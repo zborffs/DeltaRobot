@@ -1,0 +1,11 @@
+# Python
+venv/
+venv/*
+
+# IntelliJ
+.idea/
+.idea/*
+
+# Log Files
+logs/
+logs/*
