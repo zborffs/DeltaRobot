@@ -36,10 +36,10 @@ struct ForwardKinematicsReturnType {
 };
 
 ForwardKinematicsReturnType
-    forward_kin(
-        Eigen::VectorXd& phi, // what we directly measure from the encoder (i.e. angles of actuated joints)
-        Eigen::VectorXd& initial_guess, // our guess of what the state might be (maybe seed with previous state)
-        const RobotParameters& robot_params, // the parameters of the robot (should be measured)
-        ConvergenceParameters& converge_params); // configurable parameters from run-time
+forward_kin(
+    Eigen::VectorXd& phi, // what we directly measure from the encoder (i.e. angles of actuated joints)
+    Eigen::VectorXd& initial_guess, // our guess of what the state might be (maybe seed with previous state)
+    const RobotParameters& robot_params, // the parameters of the robot (know this a priori)
+    ConvergenceParameters& converge_params); // configurable parameters chosen at run-time (tolerances and so forth)
 
 #endif //DELTA_DELTA_UTILITIES_HPP

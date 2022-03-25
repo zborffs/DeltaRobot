@@ -5,7 +5,7 @@
 %      laws for the delta robot.                                          %
 %                                                                         %
 %      Author: Zach Bortoff                                               %
-%      Last Updated: March 23, 2022                                       %
+%      Last Updated: March 25, 2022                                       %
 %                                                                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

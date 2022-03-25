@@ -5,7 +5,7 @@
 %      dynamics symbolically using Lagrangian mechanics.                  %
 %                                                                         %
 %      Author: Zach Bortoff                                               %
-%      Last Updated: March 23, 2022                                       %
+%      Last Updated: March 25, 2022                                       %
 %                                                                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

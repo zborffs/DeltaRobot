@@ -8,7 +8,11 @@
  * @param converge_params
  * @return
  */
-ForwardKinematicsReturnType forward_kin(Eigen::VectorXd& phi, Eigen::VectorXd& initial_guess, const RobotParameters& robot_params, ConvergenceParameters& converge_params) {
+ForwardKinematicsReturnType
+forward_kin(Eigen::VectorXd& phi,
+            Eigen::VectorXd& initial_guess,
+            const RobotParameters& robot_params,
+            ConvergenceParameters& converge_params) {
 
 
 
