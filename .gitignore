@@ -9,3 +9,6 @@ venv/*
 # Log Files
 logs/
 logs/*
+
+# MATLAB temp files
+*.asv

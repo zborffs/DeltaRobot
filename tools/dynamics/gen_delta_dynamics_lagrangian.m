@@ -160,7 +160,6 @@ Gamma = christoffel_symbols(M, q, length(q)); % compute the Christoffel symbols
 for i = 1:size(Gamma, 1)
     assert(simplify(C(i) - qdot' * reshape(Gamma(i, :, :), size(qdot, 1), size(qdot, 1)) * qdot) == 0)
 end
-christoffel_symbols = reshape(Gamma(i, :, :), size(qdot, 1), size(qdot, 1));
 
 % M(q) * qddot + qdot' * Gamma(q) * qdot + G(q) = H'(q) * lambda + u
 % --- OR ---
