@@ -14,6 +14,12 @@
 #include "defines.hpp"
 #include "stopwatch.hpp"
 
+/**
+ * splits a string by a delimiter character (ex. "Hello John", ' ' --> ["Hello", "John"])
+ * @param str a string containing a bunch of substrings separated by some delimiter like commas or spaces
+ * @param delim the delimiter character
+ * @return a vector of substrings of the original string with the delimiter removed.
+ */
 std::vector<std::string> split(const std::string& str, const char delim) {
     std::vector<std::string> ret;
     std::string::const_iterator first  = str.cbegin();
@@ -32,6 +38,11 @@ std::vector<std::string> split(const std::string& str, const char delim) {
     return ret;
 }
 
+/**
+ * reads a file and returns a vector of strings where each string is a single line of the file
+ * @param file_name the path and file name of the file to be read
+ * @return a vector of strings
+ */
 std::vector<std::string> read_file(const std::string& file_name) {
     std::vector<std::string> lines;
 
