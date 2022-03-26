@@ -1,6 +1,8 @@
 #ifndef DELTA_DEFINES_HPP
 #define DELTA_DEFINES_HPP
 
+#include <cmath>
+
 struct ConvergenceParameters {
     double x_abstol;
     double x_reltol;

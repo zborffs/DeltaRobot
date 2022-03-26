@@ -17,29 +17,29 @@
 #include "defines.hpp"
 
 /// third party includes
-#include <Eigen/Core>
+#include <Eigen/Dense>
 
-//struct ForwardKinematicsReturnType {
-//    Eigen::VectorXd robot_state; // best guess of the state from the motor encodings
-//#ifndef NDEBUG
-//    // if we are in debug mode, measure how fast we converge on a solution by measuring these things. But to save on
-//    // compute, don't measure or save these if we are in a release.
-//
-//    unsigned int number_of_iterations; // number of iterations it took to converge
-//    double x_abserr; // absolute error between successive guesses
-//    double x_relerr; // relative error between successive guesses
-//    double f_x_abserr; // absolute error between successive guesses
-//    double f_x_relerr; // relative error between successive guesses
-//    double elapsed_time_in_us; // how long it took to get an answer in microseconds (goal is < 1 us on Jetson and Mac)
-//
-//#endif // NDEBUG
-//};
+struct ForwardKinematicsReturnType {
+    Eigen::Matrix<double, 9, 1> robot_state; // best guess of the state from the motor encodings
+#ifndef NDEBUG
+    // if we are in debug mode, measure how fast we converge on a solution by measuring these things. But to save on
+    // compute, don't measure or save these if we are in a release.
 
-Eigen::Matrix<double, 9, 1>
+    unsigned int number_of_iterations; // number of iterations it took to converge
+    double x_abserr; // absolute error between successive guesses
+    double x_relerr; // relative error between successive guesses
+    double f_x_abserr; // absolute error between successive guesses
+    double f_x_relerr; // relative error between successive guesses
+    double elapsed_time_in_us; // how long it took to get an answer in microseconds (goal is < 1 us on Jetson and Mac)
+
+#endif // NDEBUG
+};
+
+ForwardKinematicsReturnType
 forward_kinematics(
     Eigen::Matrix<double, 3, 1>& phi, // what we directly measure from the encoder (i.e. angles of actuated joints)
-    Eigen::Matrix<double, 9, 1>& initial_guess, // our guess of what the state might be (maybe seed with previous state)
+    Eigen::Matrix<double, 6, 1>& initial_guess, // our guess of what the state might be (maybe seed with previous state)
     const RobotParameters& robot_params, // the parameters of the robot (know this a priori)
-    ConvergenceParameters& converge_params); // configurable parameters chosen at run-time (tolerances and so forth)
+    const ConvergenceParameters& converge_params); // configurable parameters chosen at run-time (tolerances and so forth)
 
 #endif //DELTA_DELTA_UTILITIES_HPP
