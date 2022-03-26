@@ -20,7 +20,7 @@ delta_robot_params = struct('m1', 2.5, 'm2', 3.0, 'm3', 4.0, 'l1', 0.35, 'l2', 0
 phi0 = [pi/4, pi/4, pi/4]; % Initial actuated configuration variables
 [initial_config, ~, ~] = forward_kinematics(phi0', [3*pi/4; 0; 3*pi/4; 0; 3*pi/4; 0], delta_robot_params); % Forward Kinematics to determine the rest of the config variables
 x0 = [initial_config', zeros(1,9), zeros(1,6)];
-tspan = [0 30];
+tspan = [0 9];
 
 %% Define the ODE solver tolerances
 M = diag([ones(18,1); zeros(6,1)]);

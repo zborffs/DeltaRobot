@@ -18,10 +18,7 @@ struct ConvergenceParameters {
             unsigned int max_iterations = 100)
             : x_abstol(x_abstol), x_reltol(x_reltol), f_x_abstol(f_x_abstol), f_x_reltol(f_x_reltol),
             max_iterations(max_iterations) {
-
     }
 };
-
-
 
 #endif //DELTA_DEFINES_HPP

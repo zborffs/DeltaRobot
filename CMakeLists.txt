@@ -1,3 +1,4 @@
+# CMake Boilerplate
 cmake_minimum_required(VERSION 3.13)
 project(delta)
 set(CMAKE_CXX_STANDARD 17)
@@ -10,7 +11,6 @@ find_package(Threads REQUIRED)
 
 # Import Packages
 find_package(GTest REQUIRED) # Unit-Testing Library
-# find_package(benchmark REQUIRED) # Benchmarking Library
 find_package(spdlog REQUIRED) # Logging Library
 find_package(OpenCV REQUIRED)
 
@@ -69,7 +69,6 @@ set(DELTA_LIB_SRCS
         src/app_state_thinking.cpp
         src/app_state_moving.cpp
         src/app_state_shutting_down.cpp
-#        src/main.cpp
 )
 
 # Create library, link external libraries to it

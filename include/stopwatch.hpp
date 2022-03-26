@@ -63,14 +63,14 @@ public:
     }
 
     /**
-     * publishes the ChessClock information to an output stream
+     * publishes the StopWatch information to an output stream
      * @param os a reference to the output stream
      * @param cc a reference to an instance of the ChessClock class
      * @return   a reference to the output stream that's just been updated.
      */
-    friend std::ostream& operator<<(std::ostream& os, const StopWatch& cc) {
-        Milliseconds_t time = cc.duration() * 1e-6; // nanoseconds / milliseconds = 1e-6
-        os << time;
+    friend std::ostream& operator<<(std::ostream& os, const StopWatch& watch) {
+        double time = (double)watch.duration() * 1e-6; // nanoseconds / milliseconds = 1e-6
+        os << time << " (ms)";
         return os;
     }
 };

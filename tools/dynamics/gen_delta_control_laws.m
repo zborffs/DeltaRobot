@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Description:                                                            %
 %                                                                         %
-%      This script is responsible for generating several feedback control %
-%      laws for the delta robot.                                          %
+%      This script is responsible for generating several feedback         %
+%      control laws for the delta robot.                                  %
 %                                                                         %
 %      Author: Zach Bortoff                                               %
 %      Last Updated: March 25, 2022                                       %
@@ -86,4 +86,4 @@ Gbar = simplify(t1 * G2 + G1);
 % equation. Is that equation stable?
 
 
-
+lhs = simplify(subs((Mbar11) * qddottilde(1) + Cbar1 + Gbar1, [l1, l2, m1, m2, m3, g, r_base, r_platform,  q12 q13, q12dot, q13dot], [0.35, 0.5, 2.5, 3.0, 4.0, 9.8, 0.125, 0.03, 2.32536536364598,1.53161757449718e-32,0, 0]))
