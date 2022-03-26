@@ -42,6 +42,8 @@ bool init_logger(const std::string& logfile_path) {
     return true;
 }
 
+#include "forward_kinematics.hpp"
+
 int main() {
     // initialize the logger and path to the log files
     std::string logfile_path("../logs/delta.log");
@@ -49,9 +51,11 @@ int main() {
         return LOGGER_INITIALIZATION_FAILED; // if the initialization of the logger fails, just quit immediately
     }
 
+//    Eigen::Matrix<double, 9, 1> d = forward_kin()
+
     // start the main application loop,
-    App app(std::make_unique<AppStateInit>());
-    app();
+//    App app(std::make_unique<AppStateInit>());
+//    app();
 
     return SUCCESS;
 }

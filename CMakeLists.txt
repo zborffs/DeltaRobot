@@ -69,13 +69,13 @@ set(DELTA_LIB_SRCS
         src/app_state_thinking.cpp
         src/app_state_moving.cpp
         src/app_state_shutting_down.cpp
-        src/main.cpp
+#        src/main.cpp
 )
 
 # Create library, link external libraries to it
 add_library(delta-lib ${DELTA_LIB_SRCS})
 set_target_properties(delta-lib PROPERTIES PREFIX "")
-target_link_libraries(delta-lib Threads::Threads spdlog::spdlog ${OpenCV_LIBS}) # Matplot++::matplot
+target_link_libraries(delta-lib Threads::Threads spdlog::spdlog ${OpenCV_LIBS})
 target_include_directories(delta-lib PUBLIC ${CMAKE_SOURCE_DIR}/include ${CMAKE_BINARY_DIR}/include ${SPDLOG_INCLUDE_DIR})
 
 # Create main executable
@@ -85,5 +85,5 @@ install(TARGETS delta DESTINATION bin)
 
 if (BUILD_TESTS)
     message("-- Building tests")
-#    add_subdirectory(test)
+    add_subdirectory(test)
 endif()
