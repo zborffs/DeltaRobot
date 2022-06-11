@@ -85,5 +85,14 @@ Gbar = simplify(t1 * G2 + G1);
 % as a function of full state and control. Substitute into 'quddot'
 % equation. Is that equation stable?
 
+%% Linearize each arm
+arm1 = simplify(Mbar(1,1) * qddottilde(1) + Cbar(1) + Gbar(1));
+arm2 = simplify(Mbar(2,2) * qddottilde(2) + Cbar(2) + Gbar(2));
+arm3 = simplify(Mbar(3,3) * qddottilde(3) + Cbar(3) + Gbar(3));
+Jarm1 = simplify(subs(jacobian(arm1, [q11ddot, q11dot, q11])', [q11dot, q11ddot, q12dot, q13dot], [0, 0, 0, 0]));
+Jarm2 = simplify(subs(jacobian(arm2, [q21ddot, q21dot, q21])', [q21dot, q21ddot, q22dot, q23dot], [0, 0, 0, 0]));
+Jarm3 = simplify(subs(jacobian(arm3, [q31ddot, q31dot, q31])', [q31dot, q31ddot, q32dot, q33dot], [0, 0, 0, 0]));
 
-lhs = simplify(subs((Mbar11) * qddottilde(1) + Cbar1 + Gbar1, [l1, l2, m1, m2, m3, g, r_base, r_platform,  q12 q13, q12dot, q13dot], [0.35, 0.5, 2.5, 3.0, 4.0, 9.8, 0.125, 0.03, 2.32536536364598,1.53161757449718e-32,0, 0]))
+% lhs = simplify(subs((Mbar11) * qddottilde(1) + Cbar1 + Gbar1, [l1, l2, m1, m2, m3, g, r_base, r_platform,  q12 q13, q12dot, q13dot], [0.35, 0.5, 2.5, 3.0, 4.0, 9.8, 0.125, 0.03, 2.32536536364598,1.53161757449718e-32,0, 0]))
+% lhs_numeric = double(subs(jacobian(lhs), [q11, q11dot, q11ddot], [pi/4, 0, 0]))
+

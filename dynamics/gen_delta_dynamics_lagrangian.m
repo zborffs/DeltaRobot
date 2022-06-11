@@ -161,9 +161,9 @@ for i = 1:size(Gamma, 1)
     assert(simplify(C(i) - qdot' * reshape(Gamma(i, :, :), size(qdot, 1), size(qdot, 1)) * qdot) == 0)
 end
 
-% M(q) * qddot + qdot' * Gamma(q) * qdot + G(q) = H'(q) * lambda + u
+% M(q) * qddot + qdot' * Gamma(q) * qdot + G(q) = H'(q) * lambda + B * u
 % --- OR ---
-% M(q) * qddot + C(q,qdot) + G(q) = H'(q) * lambda + u
+% M(q) * qddot + C(q,qdot) + G(q) = H'(q) * lambda + B * u
 
 %% Compute Baumgarte Reduction Jacobians
 disp("[9/10] Computing Baumgarte index reduction Jacobians")
@@ -207,16 +207,53 @@ invMmid = simplify(inv(Mmid));
 invMbot = simplify(inv(Mbot));
 
 % reconstruct inverse of full mass matrix
-invM = [invMtop(1,:) 0 0 0 0 0 0;
-        invMtop(2,:) 0 0 0 0 0 0;
-        invMtop(3,:) 0 0 0 0 0 0;
-        0 0 0 invMmid(1,:) 0 0 0;
-        0 0 0 invMmid(2,:) 0 0 0;
-        0 0 0 invMmid(3,:) 0 0 0;
-        0 0 0 0 0 0 invMbot(1,:);
-        0 0 0 0 0 0 invMbot(2,:);
-        0 0 0 0 0 0 invMbot(3,:)];
+invM = [
+    invMtop(1,:) 0 0 0 0 0 0;
+    invMtop(2,:) 0 0 0 0 0 0;
+    invMtop(3,:) 0 0 0 0 0 0;
+    0 0 0 invMmid(1,:) 0 0 0;
+    0 0 0 invMmid(2,:) 0 0 0;
+    0 0 0 invMmid(3,:) 0 0 0;
+    0 0 0 0 0 0 invMbot(1,:);
+    0 0 0 0 0 0 invMbot(2,:);
+    0 0 0 0 0 0 invMbot(3,:)
+];
 
 %% Compute elapsed time
 elapsed_seconds = toc;
 disp("Took " + elapsed_seconds + " to execute...")
+
+for i = 1:size(invM, 1)
+    for j = 1:size(invM, 2)
+        if i == j
+            continue
+        end
+        
+        assert(simplify(invM(i,j) - invM(j,i)) == 0)
+    end
+end
+
+%% Compute projection matrix 'P' analytically
+Hneg = -H;  % negate to be consistent with MR book
+Hneg1 = Hneg(1:3,1:3);
+Hneg2 = Hneg(1:3,4:6);
+Hneg3 = Hneg(4:6,7:9);
+
+for i = 1:size(Hneg1, 1)
+    for j = 1:size(Hneg1, 2)
+        if i == j
+            continue
+        end
+        
+        assert(simplify(Hneg1(i,j) - Hneg1(j,i)) == 0)
+    end
+end
+
+t1 = H * invM * H';
+syms M [6 6];
+iM = inv(M);
+imat = subs(iM, M, t1);
+P_1 = H' * imat;
+P_2 = P_1 * H;
+P_3 = P_2 * invM;
+% P = eye(9,9) - P_3;
